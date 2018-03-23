@@ -1,4 +1,12 @@
 # -*- coding: UTF-8 -*-
-import mvrclib as lib
+import move as move
 
-lib.show_controls()
+
+def show_controls():
+    keylist = move.moves.keys()
+    for entry in keylist:
+        button = move.moves[entry]["button"]
+        print(button, entry, sep=": ")
+
+
+show_controls()

@@ -86,10 +86,3 @@ moves = {
 def movement(direction):
     for k, v in moves[direction]["pins"].items():
         GPIO.output(k, v)
-
-
-def show_controls():
-    keylist = moves.keys()
-    for entry in keylist:
-        button = moves[entry]["button"]
-        print(button, entry, sep=": ")
