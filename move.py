@@ -7,14 +7,11 @@ GPIO.setwarnings(False)
 PWMA = 18
 AIN1 = 17
 AIN2 = 4
+PWMB = 10
 BIN1 = 27
 BIN2 = 22
 
-GPIO.setup(PWMA, GPIO.OUT)
-GPIO.setup(AIN1, GPIO.OUT)
-GPIO.setup(AIN2, GPIO.OUT)
-GPIO.setup(BIN1, GPIO.OUT)
-GPIO.setup(BIN2, GPIO.OUT)
+pins = [PWMA, AIN1, AIN2, PWMB, BIN1, BIN2]
 
 moves = {
     "Stop Moving": {
@@ -83,6 +80,19 @@ moves = {
 }
 
 
+def pin_handler(action):
+    for pin in pins:
+        if action == "prime":
+            GPIO.setup(pin, GPIO.OUT)
+        else:
+            GPIO.setup(pin, GPIO.IN)
+
+
 def movement(direction):
     for k, v in moves[direction]["pins"].items():
         GPIO.output(k, v)
+
+
+def get_button(direction):
+    button = moves[direction]["button"]
+    return button
