@@ -78,7 +78,7 @@ def movement(direction):
     """
     for k, v in moves[direction]["pins"].items():
         value = "GPIO." + v
-        board.set_output(k, value.strip('\"'))
+        board.set_output(k, value)
 
 
 def get_button(direction):

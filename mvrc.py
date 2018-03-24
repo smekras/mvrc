@@ -3,7 +3,7 @@ import board
 import motion
 
 
-def show_pin_controls(mode):
+def show_pin_controls():
     """
     Display the options for the state of pins,
     and ask the user to pick .
@@ -14,10 +14,10 @@ def show_pin_controls(mode):
     print("I: Prime Pins", "O: Reset Pins", sep="\n")
     choice = input("Enter choice: ").upper()
     if choice == "I":
-        board.pin_handler("prime", mode)
+        board.pin_handler("prime")
         return 1
     else:
-        board.pin_handler("reset", mode)
+        board.pin_handler("reset")
         return 0
 
 
@@ -64,10 +64,9 @@ def main():
 
     :return: The function does not return anything.
     """
-    mode = input("Select mode (BCM|BOARD)").upper()
-    board.select_mode(mode)
+    board.select_mode()
     # TODO: add sensor controls
-    if show_pin_controls(mode):
+    if show_pin_controls():
         show_motor_controls()
         select_action()
 

@@ -1,7 +1,9 @@
 # -*- coding: UTF-8 -*-
 import RPi.GPIO as GPIO
 
-# Define the pins and their active mode
+mode = None
+
+# Define the pins and their active state
 pins = {
     "AIN1": {
         "BCM": 4,
@@ -51,33 +53,33 @@ pins = {
 }
 
 
-def select_mode(mode):
+def select_mode():
     """
     Set mapping mode and disable GPIO warnings.
 
-    :param mode: The mapping mode for the raspberry pi.
     :return: The function does not return anything.
     """
-    mode_choice = "GPIO." + mode
-    GPIO.setmode(mode_choice.strip('\"'))
-    GPIO.setwarnings(False)
+    global mode
+    mode = input("Select mode (BCM|BOARD)").upper()
+    setattr(GPIO, "setmode", mode)
+    setattr(GPIO, "setwarnings", False)
 
 
-def pin_handler(action, mode):
+def pin_handler(action):
     """
     Prime the pins for use by components,
     based on the state set in the pins dictionary.
 
     :param action: The desired action in string form.
-    :param mode: The mapping mode for the raspberry pi.
     :return: The function does not return anything.
     """
     for pin in pins.keys():
         if action == "prime":
             state = "GPIO." + pins[pin]["state"]
-            GPIO.setup(pins[pin][mode], state.strip('\"'))
         else:
-            GPIO.setup(pins[pin][mode], GPIO.IN)
+            state = GPIO.IN
+
+        setattr(GPIO, "setup", (pins[pin][mode], state))
 
 
 def read_input(pin):
@@ -87,8 +89,7 @@ def read_input(pin):
     :param pin: The number of the desired pin.
     :return: The function returns the input value.
     """
-    status = GPIO.input(pin)
-    return status
+    return getattr(GPIO, "input", pin)
 
 
 def set_output(pin, value):
@@ -100,4 +101,4 @@ def set_output(pin, value):
     :return: The function does not return anything.
     """
     output_value = "GPIO." + value
-    GPIO.output(pin, output_value.strip('\"'))
+    setattr(GPIO, "output", (pin, output_value))
