@@ -2,8 +2,9 @@
 This repository holds the code for a RoboCar project.
 
 ## Files
+* **board.py:** Python file containing pin-related code
+* **motion.py:** Python file containing motion-related code
 * **mvrc.py:** Python file containing the  main code of the project
-* **pins.py:** Python file containing pin-related code
 * **sensors.py:** Python file containing sensor-related code
 * **README.md:** This file
 
