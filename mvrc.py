@@ -1,28 +1,29 @@
 # -*- coding: UTF-8 -*-
-import move as move
+import pins
 
 
 def show_pin_controls():
     print("I: Prime Pins", "O: Reset Pins", sep="\n")
-    choice = input("Enter choice: ")
+    choice = input("Enter choice: ").upper()
     if choice == "I":
-        move.pin_handler("prime")
-        show_motor_controls()
+        pins.pin_handler("prime")
+        return 1
     else:
-        move.pin_handler("reset")
+        pins.pin_handler("reset")
+        return 0
 
 
 def show_motor_controls():
-    key_list = move.moves.keys()
+    key_list = pins.moves.keys()
     for entry in key_list:
-        button = move.moves[entry]["button"]
+        button = pins.moves[entry]["button"]
         print(button, entry, sep=": ")
 
 
 def select_action():
     buttons = []
-    for key in move.moves.keys():
-        button = move.get_button(key)
+    for key in pins.moves.keys():
+        button = pins.get_button(key)
         buttons.append(button)
 
     action = input("Enter choice: ").upper()
@@ -31,15 +32,16 @@ def select_action():
         action = input("Enter new choice: ").upper()
 
     for button in buttons:
-        for key in move.moves.keys():
-            if action == move.moves[key]["button"]:
-                return key
+        for key in pins.moves.keys():
+            if action == pins.moves[key]["button"]:
+                pins.movement(key)
 
 
 def main():
-    show_pin_controls()
-    choice = select_action()
-    move.movement(choice)
+    # TODO: add sensor controls
+    if show_pin_controls():
+        show_motor_controls()
+        select_action()
 
 
 main()
