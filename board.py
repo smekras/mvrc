@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+import time
+
 import RPi.GPIO as IO
 
 import utils
@@ -8,11 +10,11 @@ config = utils.json_to_dict('config.json')
 pin_map = config["map"]
 pin_control = config["control"]
 
-# Define mapping, states, and values, for pins
+# Define mapping, states, and current, for pins
 controls = {"I": "Prime Pins", "O": "Reset Pins"}
 maps = {"BCM": IO.BCM, "BOARD": IO.BOARD}
 states = {"IN": IO.IN, "OUT": IO.OUT}
-values = {"HIGH": IO.HIGH, "LOW": IO.LOW}
+current = {"HIGH": IO.HIGH, "LOW": IO.LOW}
 
 # Define the pins and their active state
 pins = {
@@ -100,5 +102,13 @@ def get_input(pin):
 
 
 def set_output(pin, value):
-    output_value = values[value]
+    output_value = current[value]
     IO.output(pin, output_value)
+
+
+def blink_pin(pin, duration):
+    timer_start = time.time()
+    while time.time() < timer_start + duration:
+        for value in [IO.HIGH, IO.LOW]:
+            IO.output(pin, value)
+            time.sleep(0.1)

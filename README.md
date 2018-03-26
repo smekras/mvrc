@@ -23,8 +23,9 @@ The items below are only for reference. Any compatible and comparable model shou
 * **Ultrasonic sensor:** A "SparkFun Ultrasonic Distance Sensor" (HC-SR04) was used for this project.
 * **Infrared sensor:** A "SparkFun RedBot Sensor - Line Follower" (QRE1113) was used for this project.
 * **H-Bridge:** A "SparkFun Motor Driver - Dual TB6612FNG" (with Headers) was used for this project.
-* **DC Motor:** Four "DAGU Off set motor accessories 1:48", part of a "DG012-ATV 4WD (ATV) Multi Chassis Kit"
-package, were used for this project. 
+* **DC Motor:** Four "DG01D motor 48:1 ratio gear", part of a "DG012-ATV 4WD (ATV) Multi Chassis Kit"
+package, were used for this project.
+
 ### Software
 The latest version of Rasbian (Rasbian Stretch Lite - March 2018) is recommended,
 but any version that supports the following packages will suffice, and they should be installed.

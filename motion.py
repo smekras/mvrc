@@ -17,19 +17,19 @@ moves = {
     "Move Forward": {
         "key": "W",
         "pins": {
-            board.pins["AIN1"][pin_map]: "HIGH",
-            board.pins["AIN2"][pin_map]: "LOW",
-            board.pins["BIN1"][pin_map]: "LOW",
-            board.pins["BIN2"][pin_map]: "HIGH"
+            board.pins["AIN1"][pin_map]: "LOW",
+            board.pins["AIN2"][pin_map]: "HIGH",
+            board.pins["BIN1"][pin_map]: "HIGH",
+            board.pins["BIN2"][pin_map]: "LOW"
         }
     },
     "Move Backward": {
         "key": "S",
         "pins": {
-            board.pins["AIN1"][pin_map]: "LOW",
-            board.pins["AIN2"][pin_map]: "HIGH",
-            board.pins["BIN1"][pin_map]: "HIGH",
-            board.pins["BIN2"][pin_map]: "LOW"
+            board.pins["AIN1"][pin_map]: "HIGH",
+            board.pins["AIN2"][pin_map]: "LOW",
+            board.pins["BIN1"][pin_map]: "LOW",
+            board.pins["BIN2"][pin_map]: "HIGH"
         }
     },
     "Turn Left": {
@@ -37,15 +37,15 @@ moves = {
         "pins": {
             board.pins["AIN1"][pin_map]: "LOW",
             board.pins["AIN2"][pin_map]: "LOW",
-            board.pins["BIN1"][pin_map]: "LOW",
-            board.pins["BIN2"][pin_map]: "HIGH"
+            board.pins["BIN1"][pin_map]: "HIGH",
+            board.pins["BIN2"][pin_map]: "LOW"
         }
     },
     "Turn Right": {
         "key": "D",
         "pins": {
-            board.pins["AIN1"][pin_map]: "HIGH",
-            board.pins["AIN2"][pin_map]: "LOW",
+            board.pins["AIN1"][pin_map]: "LOW",
+            board.pins["AIN2"][pin_map]: "HIGH",
             board.pins["BIN1"][pin_map]: "LOW",
             board.pins["BIN2"][pin_map]: "LOW"
         }
@@ -53,19 +53,19 @@ moves = {
     "Spin Left": {
         "key": "Q",
         "pins": {
-            board.pins["AIN1"][pin_map]: "LOW",
-            board.pins["AIN2"][pin_map]: "HIGH",
-            board.pins["BIN1"][pin_map]: "LOW",
-            board.pins["BIN2"][pin_map]: "HIGH"
+            board.pins["AIN1"][pin_map]: "HIGH",
+            board.pins["AIN2"][pin_map]: "LOW",
+            board.pins["BIN1"][pin_map]: "HIGH",
+            board.pins["BIN2"][pin_map]: "LOW"
         }
     },
     "Spin Right": {
         "key": "E",
         "pins": {
-            board.pins["AIN1"][pin_map]: "HIGH",
-            board.pins["AIN2"][pin_map]: "LOW",
-            board.pins["BIN1"][pin_map]: "HIGH",
-            board.pins["BIN2"][pin_map]: "LOW"
+            board.pins["AIN1"][pin_map]: "LOW",
+            board.pins["AIN2"][pin_map]: "HIGH",
+            board.pins["BIN1"][pin_map]: "LOW",
+            board.pins["BIN2"][pin_map]: "HIGH"
         }
     }
 }
