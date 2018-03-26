@@ -1,0 +1,22 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="RPi.GPIO.setwarnings" />
+          <option value="RPi.GPIO.BCM" />
+          <option value="RPi.GPIO.setmode" />
+          <option value="RPi.GPIO.input" />
+          <option value="RPi.GPIO.output" />
+          <option value="RPi.GPIO.IN" />
+          <option value="RPi.GPIO.BOARD" />
+          <option value="RPi.GPIO.OUT" />
+          <option value="RPi.GPIO.HIGH" />
+          <option value="RPi.GPIO.LOW" />
+          <option value="RPi.GPIO.setup" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

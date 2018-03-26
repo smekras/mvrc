@@ -7,10 +7,12 @@ This repository holds the code for a RoboCar project. The project was originally
 * Francis Kwame Fianyo - (eaafkf) | fKwame
 
 ## Files
+* **mvrc.py:** Python file containing the  main code of the project
 * **board.py:** Python file containing pin-related code
 * **motion.py:** Python file containing motion-related code
-* **mvrc.py:** Python file containing the  main code of the project
 * **sensors.py:** Python file containing sensor-related code
+* **utils.py:** Python file containing general methods
+* **config.json:** A JSON file containing default settings  
 * **README.md:** This file
 
 ## Installation

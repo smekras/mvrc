@@ -1,7 +1,18 @@
 # -*- coding: UTF-8 -*-
-import RPi.GPIO as GPIO
+import RPi.GPIO as IO
 
-mode = None
+import utils
+
+# Load configuration file
+config = utils.json_to_dict('config.json')
+pin_map = config["map"]
+pin_control = config["control"]
+
+# Define mapping, states, and values, for pins
+controls = {"I": "Prime Pins", "O": "Reset Pins"}
+maps = {"BCM": IO.BCM, "BOARD": IO.BOARD}
+states = {"IN": IO.IN, "OUT": IO.OUT}
+values = {"HIGH": IO.HIGH, "LOW": IO.LOW}
 
 # Define the pins and their active state
 pins = {
@@ -53,52 +64,41 @@ pins = {
 }
 
 
-def select_mode():
-    """
-    Set mapping mode and disable GPIO warnings.
-
-    :return: The function does not return anything.
-    """
-    global mode
-    mode = input("Select mode (BCM|BOARD)").upper()
-    setattr(GPIO, "setmode", mode)
-    setattr(GPIO, "setwarnings", False)
+def init_board():
+    IO.setmode(maps[pin_map])
+    IO.setwarnings(False)
 
 
-def pin_handler(action):
-    """
-    Prime the pins for use by components,
-    based on the state set in the pins dictionary.
+def map_pins():
+    config["map"] = input("Enter pin mapping (BCM|BOARD): ").upper
+    utils.dict_to_json(config)
 
-    :param action: The desired action in string form.
-    :return: The function does not return anything.
-    """
-    for pin in pins.keys():
+
+def control_pins():
+    utils.print_dict(controls)
+    choice = input("Enter choice: ").upper()
+    config["control"] = controls[choice]
+    set_pins(config["control"])
+
+
+def set_pins(action):
+    for entry in pins.keys():
+        pin = pins[entry]
         if action == "prime":
-            state = "GPIO." + pins[pin]["state"]
+            state = states[pin["state"]]
         else:
-            state = GPIO.IN
+            state = states["IN"]
 
-        setattr(GPIO, "setup", (pins[pin][mode], state))
+        if pin["state"] is "OUT":
+            IO.setup(pin[pin_map], state, initial=0)
+        else:
+            IO.setup(pin[pin_map], state)
 
 
-def read_input(pin):
-    """
-    Read an input pin and return the value.
-
-    :param pin: The number of the desired pin.
-    :return: The function returns the input value.
-    """
-    return getattr(GPIO, "input", pin)
+def get_input(pin):
+    return IO.input(pin)
 
 
 def set_output(pin, value):
-    """
-    Set the output value of a pin.
-
-    :param pin: The number of the desired pin.
-    :param value: The desired output value.
-    :return: The function does not return anything.
-    """
-    output_value = "GPIO." + value
-    setattr(GPIO, "output", (pin, output_value))
+    output_value = values[value]
+    IO.output(pin, output_value)
