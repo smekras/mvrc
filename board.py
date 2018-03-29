@@ -7,8 +7,8 @@ import utils
 
 # Load configuration file
 config = utils.json_to_dict('config.json')
-pin_map = config["map"]
-pin_control = config["control"]
+pin_map = config["Settings"]["map"]
+pin_control = config["Settings"]["control"]
 
 # Define mapping, states, and current, for pins
 controls = {"I": "Prime Pins", "O": "Reset Pins"}
@@ -17,53 +17,7 @@ states = {"IN": IO.IN, "OUT": IO.OUT}
 current = {"HIGH": IO.HIGH, "LOW": IO.LOW}
 
 # Define the pins and their active state
-pins = {
-    "AIN1": {
-        "BCM": 4,
-        "BOARD": 7,
-        "state": "OUT"
-    },
-    "AIN2": {
-        "BCM": 17,
-        "BOARD": 11,
-        "state": "OUT"
-    },
-    "BIN1": {
-        "BCM": 27,
-        "BOARD": 13,
-        "state": "OUT"
-    },
-    "BIN2": {
-        "BCM": 22,
-        "BOARD": 15,
-        "state": "OUT"
-    },
-    "ESIN": {
-        "BCM": 2,
-        "BOARD": 3,
-        "state": "IN"
-    },
-    "ESO1": {
-        "BCM": 3,
-        "BOARD": 5,
-        "state": "OUT"
-    },
-    "PWMA": {
-        "BCM": 18,
-        "BOARD": 12,
-        "state": "OUT"
-    },
-    "PWMB": {
-        "BCM": 13,
-        "BOARD": 33,
-        "state": "OUT"
-    },
-    "RSIN": {
-        "BCM": 23,
-        "BOARD": 16,
-        "state": "IN"
-    }
-}
+pins = config["Pins"]
 
 
 def init_board():
@@ -72,8 +26,8 @@ def init_board():
 
 
 def map_pins():
-    config["map"] = input("Enter pin mapping (BCM|BOARD): ").upper
-    utils.dict_to_json(config)
+    config["Settings"]["map"] = input("Enter pin mapping (BCM|BOARD): ").upper
+    utils.dict_to_json(config, 'config.json')
 
 
 def control_pins():

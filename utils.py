@@ -8,9 +8,9 @@ def json_to_dict(filename):
     return data
 
 
-def dict_to_json(data):
-    with open('config.json', 'w+') as source:
-        json.dump(data, source)
+def dict_to_json(data, json_file):
+    with open(json_file, 'w+') as file:
+        json.dump(data, file)
 
 
 def print_dict(dictionary):
